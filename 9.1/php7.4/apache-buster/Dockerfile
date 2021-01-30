@@ -79,4 +79,6 @@ RUN set -eux; \
 
 ENV PATH=${PATH}:/opt/drupal/vendor/bin
 
-# vim:set ft=dockerfile:
+#Changing port 80 to 8080 because ports under 1024 do not work on OpenShift
+RUN sed  "s/Listen 80/Listen 8080/g" /etc/apache2/ports.conf
+EXPOSE 8080
